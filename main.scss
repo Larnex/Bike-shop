@@ -1,0 +1,760 @@
+@import "normalize";
+@import "fonts";
+
+$fuschia: #ff0081;
+$button-bg: $fuschia;
+$button-text-color: #fff;
+$baby-blue: #f8faff;
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  user-select: none;
+  // border: 1px solid red !important;
+}
+
+html {
+  font-size: 10px;
+}
+
+body {
+  width: 100%;
+  height: 100%;
+  overflow-y: scroll;
+  // overflow-x: hidden;
+  font-family: "Regular";
+}
+
+/* Background video */
+.color-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  background-color: #000;
+  width: 100%;
+  height: 100%;
+  opacity: 0.5;
+  z-index: 2;
+}
+
+video {
+  object-fit: cover;
+  width: 100vw;
+  height: 100vh;
+  position: fixed;
+  top: 0;
+  left: 0;
+}
+
+/* Styling the first page */
+.header {
+  position: relative;
+  height: 100vh;
+  text-align: center;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* Content */
+.header-page {
+  height: 100%;
+  width: 100%;
+  z-index: 2;
+  color: #fff;
+  display: grid;
+  grid-template-columns: 15% 70% 15%;
+  grid-template-rows: 10% 90%;
+
+  /* LOGO */
+  .logo-container {
+    grid-column: 1/-1;
+    grid-row: 1;
+    text-align: center;
+    margin-top: 1.5rem;
+
+    h1 {
+      margin: 0;
+      font-family: "Logo";
+      cursor: default;
+      font-size: 5rem;
+    }
+  }
+
+  .header-nav,
+  .sidebar {
+    height: 100%;
+    width: 0%;
+    position: fixed;
+    display: flex;
+    background-color: rgba(54, 69, 79, 0.5);
+    justify-content: center;
+    align-items: center;
+    transition: all 1s ease-in-out;
+  }
+
+  /* Animation classes */
+
+  .open {
+    width: 15%;
+
+    .transform,
+    .transform-side {
+      transform: rotate(180deg);
+    }
+
+    .transform {
+      right: 0;
+    }
+
+    .transform-side {
+      left: 0;
+    }
+  }
+
+  /* End of  Animation classes */
+
+  /* HIDDEN NAVBAR */
+  ion-icon {
+    width: 100px;
+    height: 100px;
+    cursor: pointer;
+    transition: all 0.3s ease-out;
+    color: #fff;
+    opacity: 1;
+
+    &:hover {
+      transform: translate(20%, 0);
+    }
+  }
+
+  button {
+    position: absolute;
+    transition: all 0.3s ease-out;
+  }
+
+  .header-nav {
+    left: 0;
+
+    &__list {
+      height: 100%;
+      width: 100%;
+      margin-left: 2rem;
+      letter-spacing: 0.5rem;
+      display: flex;
+      justify-content: start;
+      align-items: start;
+      flex-direction: column;
+      line-height: 3.5;
+      font-family: "Menu";
+      font-size: 2rem;
+      transform: translateX(-100rem);
+      transition: all 1s ease-out;
+
+      li {
+        transition: all 0.25s ease;
+      }
+
+      li:hover {
+        font-size: 125%;
+      }
+    }
+
+    .transform-list {
+      transform: none;
+      text-align: center;
+    }
+  }
+
+  /* END OF HIDDEN NAVBAR */
+
+  /* MAIN CONTENT */
+  .header-content {
+    position: relative;
+    grid-row: 2;
+    grid-column: 2;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    flex-direction: column;
+    text-align: center;
+
+    h1 {
+      font-family: "Title";
+      font-size: 7rem;
+      margin-top: 20rem;
+      margin-bottom: 2rem;
+    }
+
+    p {
+      font-size: 2.8rem;
+      color: #af958a;
+    }
+  }
+
+  /* END OF MAIN CONTENT */
+
+  /* SIDEBAR*/
+  .sidebar {
+    right: 0;
+
+    ion-icon:hover {
+      transform: translate(-20%, 0);
+    }
+  }
+}
+
+// STYLE SLIDER PAGE
+
+.carousel-container {
+  height: 100vh;
+  width: 60%;
+  margin: 0 auto;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.carousel {
+  position: relative;
+  z-index: 5;
+  width: 100%;
+  height: 60rem;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  text-align: center;
+  background: rgba($color: #40e0d0, $alpha: 0.65);
+  border-radius: 20px;
+  padding: 25px;
+
+  img {
+    width: 75%;
+    height: 100%;
+    object-fit: contain;
+  }
+
+  &__track-container {
+    background: transparent;
+    height: 100%;
+    width: 100%;
+    position: relative;
+    overflow: hidden;
+  }
+
+  &__track {
+    padding: 0;
+    margin: 0;
+    position: relative;
+    height: 100%;
+    transition: transform 250ms ease-in;
+  }
+
+  &__slide {
+    top: 0;
+    bottom: 0;
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    border-radius: 10px;
+    object-fit: cover;
+
+    .carousel__content {
+      height: 100%;
+      width: 25%;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      margin-left: 1rem;
+
+      .carousel__title {
+        position: absolute;
+        top: 0;
+        font-family: "Title";
+        font-size: 4rem;
+        color: #fff;
+      }
+
+      .carousel__text {
+        font-family: "Regular";
+        font-size: 1.5rem;
+        color: #fff;
+        margin-top: 2rem;
+      }
+
+      // STYLE THE BUTTON
+      .bubbly-button {
+        position: absolute;
+        bottom: 0;
+        margin-bottom: 2rem;
+        display: inline-block;
+        font-size: 2.5rem;
+        padding: 2rem;
+        -webkit-appearance: none;
+        appearance: none;
+        background-color: $button-bg;
+        color: $button-text-color;
+        border-radius: 20px;
+        border: none;
+        cursor: pointer;
+        transition: transform ease-in 0.1s, box-shadow ease-in 0.25s;
+
+        &:focus {
+          outline: 0;
+        }
+
+        &:before,
+        &:after {
+          position: absolute;
+          content: "";
+          display: block;
+          width: 140%;
+          height: 100%;
+          left: -20%;
+          z-index: -1000;
+          transition: all ease-in-out 0.5s;
+          background-repeat: no-repeat;
+        }
+
+        &:before {
+          display: none;
+          top: -75%;
+          background-image: radial-gradient(circle,
+              $button-bg 20%,
+              transparent 20%),
+            radial-gradient(circle,
+              transparent 20%,
+              $button-bg 20%,
+              transparent 30%),
+            radial-gradient(circle, $button-bg 20%, transparent 20%),
+            radial-gradient(circle, $button-bg 20%, transparent 20%),
+            radial-gradient(circle,
+              transparent 10%,
+              $button-bg 15%,
+              transparent 20%),
+            radial-gradient(circle, $button-bg 20%, transparent 20%),
+            radial-gradient(circle, $button-bg 20%, transparent 20%),
+            radial-gradient(circle, $button-bg 20%, transparent 20%),
+            radial-gradient(circle, $button-bg 20%, transparent 20%);
+          background-size: 10% 10%, 20% 20%, 15% 15%, 20% 20%, 18% 18%, 10% 10%,
+            15% 15%, 10% 10%, 18% 18%;
+          //background-position: 0% 80%, -5% 20%, 10% 40%, 20% 0%, 30% 30%, 22% 50%, 50% 50%, 65% 20%, 85% 30%;
+        }
+
+        &:after {
+          display: none;
+          bottom: -75%;
+          background-image: radial-gradient(circle,
+              $button-bg 20%,
+              transparent 20%),
+            radial-gradient(circle, $button-bg 20%, transparent 20%),
+            radial-gradient(circle,
+              transparent 10%,
+              $button-bg 15%,
+              transparent 20%),
+            radial-gradient(circle, $button-bg 20%, transparent 20%),
+            radial-gradient(circle, $button-bg 20%, transparent 20%),
+            radial-gradient(circle, $button-bg 20%, transparent 20%),
+            radial-gradient(circle, $button-bg 20%, transparent 20%);
+          background-size: 15% 15%, 20% 20%, 18% 18%, 20% 20%, 15% 15%, 10% 10%,
+            20% 20%;
+          //background-position: 5% 90%, 10% 90%, 10% 90%, 15% 90%, 25% 90%, 25% 90%, 40% 90%, 55% 90%, 70% 90%;
+        }
+
+        &:active {
+          transform: scale(0.9);
+          background-color: darken($button-bg, 5%);
+          box-shadow: 0 2px 25px rgba(255, 0, 130, 0.2);
+        }
+
+        &.animate {
+          &:before {
+            display: block;
+            animation: topBubbles ease-in-out 0.75s forwards;
+          }
+
+          &:after {
+            display: block;
+            animation: bottomBubbles ease-in-out 0.75s forwards;
+          }
+        }
+      }
+
+      @keyframes topBubbles {
+        0% {
+          background-position: 5% 90%, 10% 90%, 10% 90%, 15% 90%, 25% 90%,
+            25% 90%, 40% 90%, 55% 90%, 70% 90%;
+        }
+
+        50% {
+          background-position: 0% 80%, 0% 20%, 10% 40%, 20% 0%, 30% 30%, 22% 50%,
+            50% 50%, 65% 20%, 90% 30%;
+        }
+
+        100% {
+          background-position: 0% 70%, 0% 10%, 10% 30%, 20% -10%, 30% 20%,
+            22% 40%, 50% 40%, 65% 10%, 90% 20%;
+          background-size: 0% 0%, 0% 0%, 0% 0%, 0% 0%, 0% 0%, 0% 0%;
+        }
+      }
+
+      @keyframes bottomBubbles {
+        0% {
+          background-position: 10% -10%, 30% 10%, 55% -10%, 70% -10%, 85% -10%,
+            70% -10%, 70% 0%;
+        }
+
+        50% {
+          background-position: 0% 80%, 20% 80%, 45% 60%, 60% 100%, 75% 70%,
+            95% 60%, 105% 0%;
+        }
+
+        100% {
+          background-position: 0% 90%, 20% 90%, 45% 70%, 60% 110%, 75% 80%,
+            95% 70%, 110% 10%;
+          background-size: 0% 0%, 0% 0%, 0% 0%, 0% 0%, 0% 0%, 0% 0%;
+        }
+      }
+    }
+  }
+
+  &__button {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    cursor: pointer;
+
+    ion-icon {
+      font-size: 5rem;
+      color: white;
+    }
+  }
+
+  &__button--right {
+    right: -5rem;
+  }
+
+  &__button--left {
+    left: -5rem;
+  }
+
+  &__nav {
+    // background: pink;
+    display: flex;
+    justify-content: center;
+    padding: 1rem 0;
+  }
+
+  &__indicator {
+    border: 0;
+    border-radius: 50%;
+    width: 1.5rem;
+    height: 1.5rem;
+    background: rgba($color: #fff, $alpha: 0.5);
+    margin: 0 1.2rem;
+    cursor: pointer;
+
+    &.current-slide {
+      background: rgba($color: #fff, $alpha: 0.85);
+    }
+  }
+}
+
+.is-hidden {
+  display: none;
+}
+
+/* END OF SLIDER*/
+
+/* CONTACT FORM */
+
+.contact-container {
+  height: 100vh;
+  width: 70%;
+  margin: 0 auto;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  .login-box {
+    z-index: 5;
+    height: 40rem;
+    width: 100%;
+    padding: 4rem;
+    background: rgba(0, 0, 0, 0.75);
+    box-shadow: 0 15px 25px rgba(0, 0, 0, 0.6);
+    border-radius: 10px;
+
+    h2 {
+      font-size: 2rem;
+      margin: 0 0 3rem;
+      padding: 0;
+      color: #fff;
+      text-align: center;
+    }
+
+    .user-box {
+      position: relative;
+
+      input {
+        width: 100%;
+        padding: 1rem 0;
+        font-size: 1.6rem;
+        color: #fff;
+        margin-bottom: 3rem;
+        border: none;
+        border-bottom: 1px solid #fff;
+        outline: none;
+        background: transparent;
+      }
+
+      label {
+        position: absolute;
+        top: 0;
+        left: 0;
+        padding: 1rem 0;
+        font-size: 1.6rem;
+        color: #fff;
+        pointer-events: none;
+        transition: 0.5s;
+      }
+
+      input:focus~label,
+      input:valid~label {
+        top: -2rem;
+        left: 0;
+        color: #03e9f4;
+        font-size: 1.2rem;
+      }
+    }
+
+    form {
+      a {
+        position: relative;
+        display: inline-block;
+        padding: 1rem 2rem;
+        color: #03e9f4;
+        font-size: 1.6rem;
+        text-decoration: none;
+        text-transform: uppercase;
+        overflow: hidden;
+        transition: 0.5s;
+        margin-top: 4rem;
+        letter-spacing: 0.4rem;
+
+        &:hover {
+          background: #03e9f4;
+          color: #fff;
+          border-radius: 5px;
+          box-shadow: 0 0 0.5rem #03e9f4, 0 0 2.5rem #03e9f4, 0 0 5rem #03e9f4,
+            0 0 10rem #03e9f4;
+        }
+
+        span {
+          position: absolute;
+          display: block;
+
+          &:nth-child(1) {
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 2px;
+            background: linear-gradient(90deg, transparent, #03e9f4);
+            animation: btn-anim1 1s linear infinite;
+          }
+
+          &:nth-child(2) {
+            top: -100%;
+            right: 0;
+            width: 2px;
+            height: 100%;
+            background: linear-gradient(180deg, transparent, #03e9f4);
+            animation: btn-anim2 1s linear infinite;
+            animation-delay: 0.25s;
+          }
+
+          &:nth-child(3) {
+            bottom: 0;
+            right: -100%;
+            width: 100%;
+            height: 2px;
+            background: linear-gradient(270deg, transparent, #03e9f4);
+            animation: btn-anim3 1s linear infinite;
+            animation-delay: 0.5s;
+          }
+
+          &:nth-child(4) {
+            bottom: -100%;
+            left: 0;
+            width: 2px;
+            height: 100%;
+            background: linear-gradient(360deg, transparent, #03e9f4);
+            animation: btn-anim4 1s linear infinite;
+            animation-delay: 0.75s;
+          }
+        }
+      }
+    }
+  }
+}
+
+@keyframes btn-anim1 {
+  0% {
+    left: -100%;
+  }
+
+  50%,
+  100% {
+    left: 100%;
+  }
+}
+
+@keyframes btn-anim2 {
+  0% {
+    top: -100%;
+  }
+
+  50%,
+  100% {
+    top: 100%;
+  }
+}
+
+@keyframes btn-anim3 {
+  0% {
+    right: -100%;
+  }
+
+  50%,
+  100% {
+    right: 100%;
+  }
+}
+
+@keyframes btn-anim4 {
+  0% {
+    bottom: -100%;
+  }
+
+  50%,
+  100% {
+    bottom: 100%;
+  }
+}
+
+/* END OF CONTACT FORM */
+
+/* Style about us page*/
+
+.about-us {
+  position: relative;
+  height: 100vh;
+  width: 70%;
+  margin: 0 auto;
+  z-index: 5;
+  display: grid;
+  grid-template-rows: 20% 80%;
+
+  &__content {
+    position: relative;
+    grid-row: 1;
+    width: 100%;
+    height: 100%;
+    font-family: "Menu";
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    .inner {
+      position: relative;
+      background: rgba(7, 218, 165, 0.5);
+      padding: 1em;
+      border-radius: 10px;
+      font-size: 1.5rem;
+      width: 100%;
+      height: 100%;
+      clip-path: circle(20% at 0% 100%);
+      transition: all 0.5s ease-in-out;
+      cursor: pointer;
+
+      &:hover {
+        clip-path: circle(100%);
+        background: #00b6ff;
+      }
+
+      span {
+        color: white;
+        font-weight: bold;
+        transition: color 0.5s;
+        position: absolute;
+        top: 50%;
+        left: 0;
+        transform: translate(50%, 50%);
+        font-size: 2rem;
+      }
+
+      &:hover span {
+        color: rgba(255, 255, 255, 0);
+      }
+
+      h1 {
+        color: white;
+        margin: 0;
+        font-size: 2.5rem;
+      }
+
+      ul>li {
+        color: white;
+      }
+
+      .about-us__details {
+        height: 100%;
+        width: 100%;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        flex-direction: column;
+        font-size: 1.6rem;
+        line-height: 1.5;
+      }
+    }
+  }
+
+  #map {
+    grid-row: 2;
+    margin: auto;
+    height: 100%;
+    width: 100%;
+
+    iframe {
+      width: 100%;
+      height: 100%;
+    }
+  }
+}
+
+// Footer style
+.footer {
+  position: absolute;
+  margin-top: 5rem;
+  height: 10vh;
+  width: 100%;
+  z-index: 5;
+  background: #000;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  &__content {
+    color: white;
+    font-family: "Menu";
+    font-size: 2.5rem;
+  }
+}
+
+@import 'mobile';

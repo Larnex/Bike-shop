@@ -1,0 +1,181 @@
+/* 
+  ##Device = Desktops
+  ##Screen = 1281px to higher resolution desktops
+*/
+@mixin showAbout {
+    .about-us {
+        &__content {
+            .inner {
+                clip-path: circle(100% at 50% 100%);
+
+                span {
+                    display: none;
+                }
+            }
+        }
+    }
+}
+
+/* 
+    ##Device = Laptops, Desktops
+    ##Screen = B/w 1025px to 1280px
+  */
+
+@media (min-width: 1025px) and (max-width: 1280px) {
+
+    html {
+        font-size: 8px;
+    }
+
+}
+
+/* 
+    ##Device = Tablets, Ipads (portrait)
+    ##Screen = B/w 768px to 1024px
+  */
+
+@media (min-width: 768px) and (max-width: 1024px) {
+
+    html {
+        font-size: 7px;
+    }
+
+
+    .carousel {
+        padding: 20px;
+        height: 70rem;
+    }
+
+    .header-page {
+        .header-nav {
+            &__list {
+                li {
+                    letter-spacing: 0.4rem;
+                }
+
+                li:hover {
+                    font-size: 110%;
+                }
+            }
+        }
+    }
+
+    @include showAbout;
+
+}
+
+/* 
+    ##Device = Low Resolution Tablets, Mobiles (Landscape)
+    ##Screen = B/w 481px to 767px
+  */
+
+@media (min-width: 481px) and (max-width: 767px) {
+
+    html {
+        font-size: 6.5px;
+    }
+
+    .header {
+        z-index: 6;
+    }
+
+
+    .header-page {
+        .open {
+            width: 50%;
+        }
+
+        .header-nav,
+        .sidebar {
+            z-index: 7;
+            background-color: rgba(54, 69, 79, 1);
+        }
+
+        .header-nav__list {
+            font-size: 3rem;
+            justify-content: center;
+        }
+    }
+
+    .carousel-container {
+        width: 65%;
+    }
+
+    .carousel {
+        height: 60rem;
+        padding: 10px;
+
+        img {
+            width: 60%;
+        }
+
+        &__slide {
+            .carousel__content {
+                width: 40%;
+            }
+        }
+    }
+
+    @include showAbout;
+
+}
+
+/* 
+    ##Device = Most of the Smartphones Mobiles (Portrait)
+    ##Screen = B/w 320px to 479px
+  */
+
+@media (min-width: 320px) and (max-width: 480px) {
+    html {
+        font-size: 6px;
+    }
+
+    .header {
+        z-index: 6;
+    }
+
+
+    .header-page {
+        .open {
+            width: 50%;
+        }
+
+        ion-icon {
+            width: 70px;
+            height: 70px;
+        }
+
+        .header-nav,
+        .sidebar {
+            z-index: 7;
+            background-color: rgba(54, 69, 79, 1);
+        }
+
+        .header-nav__list {
+            font-size: 3rem;
+            justify-content: center;
+        }
+    }
+
+    .carousel-container {
+        width: 65%;
+    }
+
+    .carousel {
+        height: 70rem;
+        padding: 10px;
+
+        img {
+            width: 60%;
+        }
+
+        &__slide {
+            .carousel__content {
+                width: 40%;
+            }
+        }
+    }
+
+    @include showAbout;
+
+}
