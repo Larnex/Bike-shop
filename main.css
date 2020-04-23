@@ -262,11 +262,8 @@ video {
   /* LOGO */
   /* Animation classes */
   /* End of  Animation classes */
-  /* HIDDEN NAVBAR */
-  /* END OF HIDDEN NAVBAR */
-  /* MAIN CONTENT */
-  /* END OF MAIN CONTENT */
   /* SIDEBAR*/
+  /* HIDDEN NAVBAR */
 }
 
 .header-page .logo-container {
@@ -319,6 +316,48 @@ video {
 
 .header-page .open .transform-side {
   left: 0;
+}
+
+.header-page .sidebar {
+  right: 0;
+}
+
+.header-page .sidebar__container {
+  height: 100%;
+  width: 100%;
+  margin-left: 2rem;
+  letter-spacing: 0.5rem;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: start;
+      -ms-flex-pack: start;
+          justify-content: start;
+  -webkit-box-align: start;
+      -ms-flex-align: start;
+          align-items: start;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  line-height: 3.5;
+  font-family: "Menu";
+  font-size: 2rem;
+  -webkit-transform: translateX(100rem);
+          transform: translateX(100rem);
+  -webkit-transition: all 1s ease-out;
+  transition: all 1s ease-out;
+}
+
+.header-page .sidebar .transform-sidebar {
+  -webkit-transform: none;
+          transform: none;
+  text-align: center;
+}
+
+.header-page .sidebar ion-icon:hover {
+  -webkit-transform: translate(-20%, 0);
+          transform: translate(-20%, 0);
 }
 
 .header-page ion-icon {
@@ -388,7 +427,9 @@ video {
   text-align: center;
 }
 
-.header-page .header-content {
+/* END OF HIDDEN NAVBAR */
+/* MAIN CONTENT */
+.header-content {
   position: relative;
   -ms-grid-row: 2;
   grid-row: 2;
@@ -412,27 +453,19 @@ video {
   text-align: center;
 }
 
-.header-page .header-content h1 {
+.header-content h1 {
   font-family: "Title";
   font-size: 7rem;
   margin-top: 20rem;
   margin-bottom: 2rem;
 }
 
-.header-page .header-content p {
+.header-content p {
   font-size: 2.8rem;
   color: #af958a;
 }
 
-.header-page .sidebar {
-  right: 0;
-}
-
-.header-page .sidebar ion-icon:hover {
-  -webkit-transform: translate(-20%, 0);
-          transform: translate(-20%, 0);
-}
-
+/* END OF MAIN CONTENT */
 .carousel-container {
   height: 100vh;
   width: 60%;
@@ -1081,6 +1114,10 @@ video {
   font-size: 2.5rem;
 }
 
+.ui-datepicker {
+  z-index: 8 !important;
+}
+
 /* 
   ##Device = Desktops
   ##Screen = 1281px to higher resolution desktops
@@ -1166,6 +1203,10 @@ video {
   }
   .about-us__content .inner span {
     display: none;
+  }
+  .ui-datepicker {
+    width: 25%;
+    height: 25%;
   }
 }
 

@@ -1,16 +1,32 @@
 const navbar = document.getElementById("navbar");
 const navList = document.querySelector(".header-nav__list");
 const sidebar = document.getElementById("sidebar");
+const sideContent = document.querySelector(".sidebar__container");
 const btn = document.getElementById("menu-button");
 const sideBtn = document.getElementById("side-button");
 const open = document.querySelector(".open");
 const links = document.querySelectorAll('.header-nav__item-link');
 
 
+// datepicker
+$(function () {
+  $("#datepicker").datepicker({
+    inline: true,
+    showOtherMonths: true,
+    dayNamesMin: ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'],
+  });
+});
+
 function hideNavBar() {
   navbar.classList.toggle("open");
   btn.classList.toggle("transform");
   navList.classList.toggle("transform-list");
+}
+
+function hideSideBar() {
+  sidebar.classList.toggle("open");
+  sideBtn.classList.toggle("transform-side");
+  sideContent.classList.toggle("transform-sidebar");
 }
 
 btn.addEventListener("click", (e) => {
@@ -26,8 +42,7 @@ for (const link of links) {
 
 sideBtn.addEventListener("click", (e) => {
   e.preventDefault;
-  sidebar.classList.toggle("open");
-  sideBtn.classList.toggle("transform-side");
+  hideSideBar();
 });
 
 // Style the buy button 
