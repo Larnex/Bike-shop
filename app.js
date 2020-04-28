@@ -152,3 +152,37 @@ dotsNav.addEventListener('click', e => {
 
   hideShowArrows(slides, prevButton, nextButton, targetIndex);
 });
+
+// add autocomplete
+$(function () {
+  var availableTags = [
+    "3T",
+    "6ku",
+    "Alan",
+    "Basso",
+    "Casati",
+    "Dahon",
+    "EVO",
+    "Factory",
+    "Giant",
+    "Haro",
+    "Jamis",
+    "Kemo",
+    "Look",
+    "Marin",
+    "Niner",
+    "Ocoee",
+    "Parlee",
+    "Quiring",
+    "Ragley",
+    "Saracen",
+    "Tern",
+    "Univega",
+    "Vilano",
+    "Whyte",
+    "Zinn Cycles"
+  ];
+  $("#tags").autocomplete({
+    source: availableTags
+  });
+});

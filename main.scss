@@ -92,8 +92,6 @@ video {
     transition: all 1s ease-in-out;
   }
 
-
-
   /* Animation classes */
 
   .open {
@@ -126,14 +124,36 @@ video {
       letter-spacing: 0.5rem;
       display: flex;
       justify-content: start;
-      align-items: start;
-      flex-direction: column;
+      align-items: center;
+      flex-direction: column-reverse;
       line-height: 3.5;
       font-family: "Menu";
       font-size: 2rem;
       transform: translateX(100rem);
       transition: all 1s ease-out;
+      padding-right: 2rem;
 
+      .datepicker-container {
+        width: 100%;
+        height: 50%;
+        justify-self: end;
+        line-height: 2;
+
+        #datepicker {
+          width: 100%;
+
+        }
+      }
+
+      // style autocomplete search
+      .searchbar {
+        width: 100%;
+        height: 50%;
+        display: flex;
+        flex-direction: column;
+        justify-content: start;
+        margin-bottom: 10rem;
+      }
     }
 
     .transform-sidebar {
@@ -199,8 +219,6 @@ video {
   }
 }
 
-
-
 /* END OF HIDDEN NAVBAR */
 
 /* MAIN CONTENT */
@@ -230,8 +248,6 @@ video {
 }
 
 /* END OF MAIN CONTENT */
-
-
 
 // STYLE SLIDER PAGE
 
@@ -331,6 +347,7 @@ video {
         transition: transform ease-in 0.1s, box-shadow ease-in 0.25s;
 
         &:focus {
+
           outline: 0;
         }
 
@@ -784,4 +801,5 @@ video {
   z-index: 8 !important;
 }
 
-@import 'mobile';
+
+@import "mobile";
