@@ -1,219 +1,233 @@
 <!DOCTYPE html>
 <html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Bike Shop</title>
+    <link
+      rel="stylesheet"
+      href="https://maxcdn.bootstrapcdn.com/font-awesome/4.6.3/css/font-awesome.min.css"
+    />
 
-<head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Bike Shop</title>
-  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.6.3/css/font-awesome.min.css" />
-  <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css" />
-  <link rel="stylesheet" href="/resources/demos/style.css" />
-  <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
-  <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
-  <link rel="stylesheet" href="main.css" />
-</head>
+    <link rel="stylesheet" href="main.css" />
+  </head>
 
-<body>
-  <div class="color-overlay"></div>
-  <video muted class="header-bg__video" id="video">
-    <source src="./images/Pexels Videos 1793482.mp4" type="video/mp4" />
-  </video>
-  <div class="header" id="home">
-    <div class="header-page">
-      <div class="logo-container">
-        <h1 class="logo">Bikeshop</h1>
-      </div>
-      <nav class="header-nav" id="navbar">
-        <button class="dropdown-button" id="menu-button">
-          <ion-icon name="caret-forward-outline" class="menu-button"></ion-icon>
-        </button>
-        <ul class="header-nav__list">
-          <li class="header-nav__item">
-            <a href="#home" class="header-nav__item-link">HOME</a>
-          </li>
-
-          <li class="header-nav__item"></li>
-          <li class="header-nav__item">
-            <a href="#bikes" class="header-nav__item-link">BIKES</a>
-          </li>
-          <li class="header-nav__item">
-            <a href="#contact" class="header-nav__item-link">CONTACT</a>
-          </li>
-          <li class="header-nav__item">
-            <a href="#about-us" class="header-nav__item-link">ABOUT US</a>
-          </li>
-        </ul>
-      </nav>
-
-      <div class="header-content">
-        <h1 class="header__title">
-          Lorem ipsum dolor sit amet consectetur adipisicing.
-        </h1>
-        <p class="header__text">
-          Lorem ipsum dolor sit amet consectetur adipisicing elit.
-          Praesentium, dolores?
-        </p>
-      </div>
-
-      <aside class="sidebar" id="sidebar">
-        <div class="sidebar__container">
-          <div class="datepicker-container">
-            Date: <input type="text" id="datepicker" />
-          </div>
-          <div class="searchbar">
-            <label for="tags">Tags: </label>
-            <input id="tags">
-          </div>
+  <body>
+    <div class="color-overlay"></div>
+    <video muted autoplay loop class="header-bg__video" id="video">
+      <source src="./images/Pexels Videos 1793482.mp4" type="video/mp4" />
+    </video>
+    <div class="header" id="home">
+      <div class="header-page">
+        <div class="logo-container">
+          <h1 class="logo">Bikeshop</h1>
         </div>
-        <button class="dropdown-button" id="side-button">
-          <ion-icon name="caret-back-outline" class="menu-button"></ion-icon>
-        </button>
-      </aside>
-    </div>
-  </div>
-
-  <!-- SLIDER PAGE -->
-  <div class="carousel-container" id="bikes">
-    <div class="carousel">
-      <button class="carousel__button carousel__button--left is-hidden">
-        <ion-icon name="arrow-back-outline"></ion-icon>
-      </button>
-      <div class="carousel__track-container">
-        <div class="carousel__track">
-          <div class="carousel__slide current-slide">
-            <img src="./images/bikes/bike-1.png" alt="" />
-            <div class="carousel__content">
-              <h1 class="carousel__title">
-                Lorem ipsum dolor sit.
-              </h1>
-              <p class="carousel__text">
-                Lorem ipsum dolor sit amet consectetur adipisicing elit.
-                Accusamus praesentium, laudantium vero doloribus officiis
-                labore quia maxime reprehenderit. Pariatur voluptate neque
-                suscipit consectetur repudiandae nulla?
-              </p>
-              <button class="carousel__buy bubbly-button">BUY NOW</button>
-            </div>
-          </div>
-          <div class="carousel__slide">
-            <img src="./images/bikes/bike-2.png" alt="" />
-            <div class="carousel__content">
-              <h1 class="carousel__title">
-                Lorem ipsum dolor sit.
-              </h1>
-              <p class="carousel__text">
-                Lorem ipsum dolor sit amet consectetur adipisicing elit.
-                Repudiandae eligendi natus, minus saepe eius autem voluptates
-                nostrum delectus. Labore pariatur temporibus minus, doloremque
-                laborum nesciunt?
-              </p>
-              <button class="carousel__buy bubbly-button">BUY NOW</button>
-            </div>
-          </div>
-          <div class="carousel__slide">
-            <img src="./images/bikes/bike-3.png" alt="" />
-            <div class="carousel__content">
-              <h1 class="carousel__title">
-                Lorem ipsum dolor sit.
-              </h1>
-              <p class="carousel__text">
-                Lorem ipsum dolor sit amet consectetur adipisicing elit.
-                Repudiandae eligendi natus, minus saepe eius autem voluptates
-                nostrum delectus. Labore pariatur temporibus minus, doloremque
-                laborum nesciunt?
-              </p>
-              <button class="carousel__buy bubbly-button">BUY NOW</button>
-            </div>
-          </div>
-          <div class="carousel__slide">
-            <img src="./images/bikes/bike-4.png" alt="" />
-            <div class="carousel__content">
-              <h1 class="carousel__title">
-                Lorem ipsum dolor sit.
-              </h1>
-              <p class="carousel__text">
-                Lorem ipsum dolor sit amet consectetur adipisicing elit.
-                Repudiandae eligendi natus, minus saepe eius autem voluptates
-                nostrum delectus. Labore pariatur temporibus minus, doloremque
-                laborum nesciunt?
-              </p>
-              <button class="carousel__buy bubbly-button">BUY NOW</button>
-            </div>
-          </div>
-        </div>
-      </div>
-      <button class="carousel__button carousel__button--right">
-        <ion-icon name="arrow-forward-outline"></ion-icon>
-      </button>
-      <div class="carousel__nav">
-        <button class="carousel__indicator current-slide"></button>
-        <button class="carousel__indicator"></button>
-        <button class="carousel__indicator"></button>
-        <button class="carousel__indicator"></button>
-      </div>
-    </div>
-  </div>
-  <!-- END OF SLIDER PAGE -->
-
-  <!-- CONTACT PAGE -->
-  <div class="contact-container" id="contact">
-    <div class="login-box">
-      <h2>CONTACT FORM</h2>
-      <form>
-        <div class="user-box">
-          <input type="text" name="" required="" autocomplete="off" />
-          <label>Name</label>
-        </div>
-        <div class="user-box">
-          <input type="email" name="" required="" autocomplete="off" />
-          <label>Email</label>
-        </div>
-        <a href="#">
-          <span></span>
-          <span></span>
-          <span></span>
-          <span></span>
-          SEND
-        </a>
-      </form>
-    </div>
-  </div>
-  <!-- END OF CONTACT PAGE -->
-
-  <!-- MAP PAGE -->
-  <div class="about-us" id="about-us">
-    <div class="about-us__content">
-      <div class="inner">
-        <span>hover</span>
-        <div class="about-us__details">
-          <h1>about us</h1>
-          <ul class="contacts">
-            <li class="contacts__item">Telefon: +4812381290</li>
-            <li class="contacts__item">
-              Email:<a href="">bohdan.asauliuk@gmail.com</a>
+        <nav class="header-nav" id="navbar">
+          <button class="dropdown-button" id="menu-button">
+            <ion-icon
+              name="caret-forward-outline"
+              class="menu-button"
+            ></ion-icon>
+          </button>
+          <ul class="header-nav__list">
+            <li class="header-nav__item">
+              <a href="#home" class="header-nav__item-link">HOME</a>
             </li>
-            <li class="contacts__item">
-              Address: Poland, Gdańsk, ul. Piastowska, 157
+
+            <li class="header-nav__item"></li>
+            <li class="header-nav__item">
+              <a href="#bikes" class="header-nav__item-link">BIKES</a>
+            </li>
+            <li class="header-nav__item">
+              <a href="#contact" class="header-nav__item-link">CONTACT</a>
+            </li>
+            <li class="header-nav__item">
+              <a href="#about-us" class="header-nav__item-link">ABOUT US</a>
             </li>
           </ul>
+        </nav>
+
+        <div class="header-content">
+          <h1 class="header__title">
+            Lorem ipsum dolor sit amet consectetur adipisicing.
+          </h1>
+          <p class="header__text">
+            Lorem ipsum dolor sit amet consectetur adipisicing elit.
+            Praesentium, dolores?
+          </p>
+        </div>
+
+        <aside class="sidebar" id="sidebar">
+          <div class="sidebar__container">
+            <div class="datepicker-container">
+              Date: <input type="text" id="datepicker" />
+            </div>
+            <div class="searchbar">
+              <label for="tags">Tags: </label>
+              <input id="tags" />
+            </div>
+          </div>
+          <button class="dropdown-button" id="side-button">
+            <ion-icon name="caret-back-outline" class="menu-button"></ion-icon>
+          </button>
+        </aside>
+      </div>
+    </div>
+
+    <!-- SLIDER PAGE -->
+    <div class="carousel-container" id="bikes">
+      <div class="carousel">
+        <button class="carousel__button carousel__button--left is-hidden">
+          <ion-icon name="arrow-back-outline"></ion-icon>
+        </button>
+        <div class="carousel__track-container">
+          <div class="carousel__track">
+            <div class="carousel__slide current-slide">
+              <img src="./images/bikes/bike-1.png" alt="" />
+              <div class="carousel__content">
+                <h1 class="carousel__title">
+                  Lorem ipsum dolor sit.
+                </h1>
+                <p class="carousel__text">
+                  Lorem ipsum dolor sit amet consectetur adipisicing elit.
+                  Accusamus praesentium, laudantium vero doloribus officiis
+                  labore quia maxime reprehenderit. Pariatur voluptate neque
+                  suscipit consectetur repudiandae nulla?
+                </p>
+                <button class="carousel__buy bubbly-button">BUY NOW</button>
+              </div>
+            </div>
+            <div class="carousel__slide">
+              <img src="./images/bikes/bike-2.png" alt="" />
+              <div class="carousel__content">
+                <h1 class="carousel__title">
+                  Lorem ipsum dolor sit.
+                </h1>
+                <p class="carousel__text">
+                  Lorem ipsum dolor sit amet consectetur adipisicing elit.
+                  Repudiandae eligendi natus, minus saepe eius autem voluptates
+                  nostrum delectus. Labore pariatur temporibus minus, doloremque
+                  laborum nesciunt?
+                </p>
+                <button class="carousel__buy bubbly-button">BUY NOW</button>
+              </div>
+            </div>
+            <div class="carousel__slide">
+              <img src="./images/bikes/bike-3.png" alt="" />
+              <div class="carousel__content">
+                <h1 class="carousel__title">
+                  Lorem ipsum dolor sit.
+                </h1>
+                <p class="carousel__text">
+                  Lorem ipsum dolor sit amet consectetur adipisicing elit.
+                  Repudiandae eligendi natus, minus saepe eius autem voluptates
+                  nostrum delectus. Labore pariatur temporibus minus, doloremque
+                  laborum nesciunt?
+                </p>
+                <button class="carousel__buy bubbly-button">BUY NOW</button>
+              </div>
+            </div>
+            <div class="carousel__slide">
+              <img src="./images/bikes/bike-4.png" alt="" />
+              <div class="carousel__content">
+                <h1 class="carousel__title">
+                  Lorem ipsum dolor sit.
+                </h1>
+                <p class="carousel__text">
+                  Lorem ipsum dolor sit amet consectetur adipisicing elit.
+                  Repudiandae eligendi natus, minus saepe eius autem voluptates
+                  nostrum delectus. Labore pariatur temporibus minus, doloremque
+                  laborum nesciunt?
+                </p>
+                <button class="carousel__buy bubbly-button">BUY NOW</button>
+              </div>
+            </div>
+          </div>
+        </div>
+        <button class="carousel__button carousel__button--right">
+          <ion-icon name="arrow-forward-outline"></ion-icon>
+        </button>
+        <div class="carousel__nav">
+          <button class="carousel__indicator current-slide"></button>
+          <button class="carousel__indicator"></button>
+          <button class="carousel__indicator"></button>
+          <button class="carousel__indicator"></button>
         </div>
       </div>
     </div>
-    <div id="map">
-      <iframe
-        src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2321.5731151556183!2d18.589070937720912!3d54.41751423489722!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x46fd0ad78ef68af5%3A0x86f04340bbc7e159!2sPiastowska%20157%2C%2080-358%20Gda%C5%84sk!5e0!3m2!1sru!2spl!4v1586718903655!5m2!1sru!2spl"
-        width="600" height="450" frameborder="0" style="border: 0;" allowfullscreen="" aria-hidden="false"
-        tabindex="0"></iframe>
-    </div>
-  </div>
+    <!-- END OF SLIDER PAGE -->
 
-  <footer class="footer">
-    <div class="footer__content">
-      <p>&copy 2020 by Bohdan Asauliuk</p>
+    <!-- CONTACT PAGE -->
+    <div class="contact-container" id="contact">
+      <div class="login-box">
+        <h2>CONTACT FORM</h2>
+        <form>
+          <div class="user-box">
+            <input type="text" name="" required="" autocomplete="off" />
+            <label>Name</label>
+          </div>
+          <div class="user-box">
+            <input type="email" name="" required="" autocomplete="off" />
+            <label>Email</label>
+          </div>
+          <a href="#">
+            <span></span>
+            <span></span>
+            <span></span>
+            <span></span>
+            SEND
+          </a>
+        </form>
+      </div>
     </div>
-  </footer>
-  <script src="app.js"></script>
-  <script src="https://unpkg.com/ionicons@5.0.0/dist/ionicons.js"></script>
-</body>
+    <!-- END OF CONTACT PAGE -->
 
+    <!-- MAP PAGE -->
+    <div class="about-us" id="about-us">
+      <div class="about-us__content">
+        <div class="inner">
+          <span>hover</span>
+          <div class="about-us__details">
+            <h1>about us</h1>
+            <ul class="contacts">
+              <li class="contacts__item">Telefon: +4812381290</li>
+              <li class="contacts__item">
+                Email:<a href="">bohdan.asauliuk@gmail.com</a>
+              </li>
+              <li class="contacts__item">
+                Address: Poland, Gdańsk, ul. Piastowska, 157
+              </li>
+            </ul>
+          </div>
+        </div>
+      </div>
+      <div id="map">
+        <iframe
+          src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2321.5731151556183!2d18.589070937720912!3d54.41751423489722!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x46fd0ad78ef68af5%3A0x86f04340bbc7e159!2sPiastowska%20157%2C%2080-358%20Gda%C5%84sk!5e0!3m2!1sru!2spl!4v1586718903655!5m2!1sru!2spl"
+          width="600"
+          height="450"
+          frameborder="0"
+          style="border: 0;"
+          allowfullscreen=""
+          aria-hidden="false"
+          tabindex="0"
+        ></iframe>
+      </div>
+    </div>
+
+    <footer class="footer">
+      <div class="footer__content">
+        <p>&copy 2020 by Bohdan Asauliuk</p>
+      </div>
+    </footer>
+
+    <script
+      src="https://code.jquery.com/jquery-3.5.1.js"
+      integrity="sha256-QWo7LDvxbWT2tbbQ97B53yJnYU3WhH/C8ycbRAkjPDc="
+      crossorigin="anonymous"
+    ></script>
+    <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+    <script src="app.js"></script>
+    <script src="https://unpkg.com/ionicons@5.0.0/dist/ionicons.js"></script>
+  </body>
 </html>
