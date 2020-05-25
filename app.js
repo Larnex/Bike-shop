@@ -67,7 +67,7 @@ $(function () {
   const nextButton = $(".carousel__button--right");
   const prevButton = $(".carousel__button--left");
   const dotsNav = $(".carousel__nav");
-  const dots = dotsNav.children().toArray();
+  const dot = dotsNav.children().toArray();
 
   const slideWidth = slides[0].getBoundingClientRect().width;
 
@@ -83,47 +83,45 @@ $(function () {
   }
 
   function updateDots(currentDot, targetDot) {
-    $(currentDot).removeClass("current-slide");
     $(targetDot).addClass("current-slide");
-  }
-
-  function hideShowArrows(slides, prevButton, nextButton, targetIndex) {
-    if (targetIndex === 0) {
-      $(prevButton).addClass("is-hidden");
-      $(nextButton).removeClass("is-hidden");
-    } else if (targetIndex === slides.length - 1) {
-      $(prevButton).removeClass("is-hidden");
-      $(nextButton).addClass("is-hidden");
-    } else {
-      $(prevButton).removeClass("is-hidden");
-      $(nextButton).removeClass("is-hidden");
-    }
+    $(currentDot).removeClass("current-slide");
   }
 
   // when I click left, move slides to the left
   prevButton.click((e) => {
     const currentSlide = track.find(".current-slide");
-    const prevSlide = currentSlide.prev();
-    const currentDot = dotsNav.find(".current-slide");
-    const prevDot = currentDot.prev();
+    let prevSlide = currentSlide.prev();
+    let currentDot = dotsNav.find(".current-slide");
+    let prevDot = currentDot.prev();
     const prevIndex = prevSlide.index();
+    console.log(dotsNav);
+
+    console.log(dotsNav[dotsNav.length - 1]);
+
+    if (prevIndex === -1) {
+      prevSlide = slides[slides.length - 1];
+      prevDot = dot[dot.length - 1];
+    }
 
     moveToSlide(track, currentSlide, prevSlide);
     updateDots(currentDot, prevDot);
-    hideShowArrows(slides, prevButton, nextButton, prevIndex);
   });
 
   // when I click right, move slides to the right
   nextButton.click((e) => {
     const currentSlide = track.find(".current-slide");
-    const nextSlide = currentSlide.next();
+    let nextSlide = currentSlide.next();
     const currentDot = dotsNav.find(".current-slide");
-    const nextDot = currentDot.next();
+    let nextDot = currentDot.next();
     const nextIndex = nextSlide.index();
+
+    if (nextIndex === -1) {
+      nextSlide = slides[0];
+      nextDot = dot[0];
+    }
 
     moveToSlide(track, currentSlide, nextSlide);
     updateDots(currentDot, nextDot);
-    hideShowArrows(slides, prevButton, nextButton, nextIndex);
   });
 
   // when I click the nav indicators, move to that slide
@@ -139,8 +137,6 @@ $(function () {
 
     moveToSlide(track, currentSlide, targetSlide);
     updateDots(currentDot, targetDot);
-
-    hideShowArrows(slides, prevButton, nextButton, targetIndex);
   });
 
   // autocomplete
