@@ -94,9 +94,6 @@ $(function () {
     let currentDot = dotsNav.find(".current-slide");
     let prevDot = currentDot.prev();
     const prevIndex = prevSlide.index();
-    console.log(dotsNav);
-
-    console.log(dotsNav[dotsNav.length - 1]);
 
     if (prevIndex === -1) {
       prevSlide = slides[slides.length - 1];
