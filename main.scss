@@ -523,7 +523,6 @@ video {
 
   .login-box {
     z-index: 5;
-    height: 40rem;
     width: 100%;
     padding: 4rem;
     background: rgba(0, 0, 0, 0.75);
@@ -555,22 +554,14 @@ video {
 
       label {
         position: absolute;
-        top: 0;
-        left: 0;
-        padding: 1rem 0;
-        font-size: 1.6rem;
-        color: #fff;
-        pointer-events: none;
-        transition: 0.5s;
-      }
-
-      input:focus~label,
-      input:valid~label {
         top: -2rem;
         left: 0;
+        padding: 1rem 0;
+        font-size: 1.4rem;
         color: #03e9f4;
-        font-size: 1.2rem;
+        pointer-events: none;
       }
+
     }
 
     form {
@@ -639,7 +630,14 @@ video {
           }
         }
       }
+
+      #status {
+        font-size: 2rem;
+        color: white;
+        font-family: 'Bold';
+      }
     }
+
   }
 }
 

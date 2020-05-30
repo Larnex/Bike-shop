@@ -167,4 +167,26 @@ $(function () {
   $("#tags").autocomplete({
     source: availableTags,
   });
+
+  // Store to local storage
+  $("#submit").click((e) => {
+    let data = {
+      username: $("#user-name").val(),
+      email: $("#user-email").val(),
+      password: $("#user-password").val(),
+      passwordConfirm: $("#user-password-confirm").val(),
+    };
+
+    if ($("#user-email")[0].validity.valid == false) {
+      alert("Your email is not valid!");
+    } else if (data.password !== data.passwordConfirm) {
+      alert("Your password doesn't match!");
+    } else {
+      const entries = Object.entries(data);
+      for (const [input, value] of entries) {
+        localStorage.setItem(input, value);
+      }
+    }
+  });
+
 });
