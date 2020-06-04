@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Result</title>
+    <link rel="stylesheet" href="result.css">
+</head>
+
+<body>
+    <div class="color-overlay"></div>
+    <video muted autoplay loop class="header-bg__video" id="video">
+        <source src="../images/Pexels Videos 1793482.mp4" type="video/mp4" />
+    </video>
+    <div class="container" id="container">
+        <div class="bike">
+            <h3>Chosen Bike</h3>
+            <p>Bike:<span id="bike"></span></p>
+            <br>
+        </div>
+        <div class="billing-information">
+            <h3>Billing Information</h3>
+            <p>Name: <span id="name"></span></p>
+            <p>Surname: <span id="surname"></span></p>
+            <p>Street Address: <span id="street"></span></p>
+            <p>State/region: <span id="state"></span></p>
+            <p>Zip: <span id="zip"></span></p>
+            <p>Phone: <span id="phone"></span></p>
+        </div>
+        <div class="delivery-information">
+            <h3>Delivery Information</h3>
+            <p>Name: <span id="deliveryName"></span></p>
+            <p>Surname: <span id="deliverySurname"></span></p>
+            <p>Street Address: <span id="deliveryStreet"></span></p>
+            <p>State/region: <span id="deliveryState"></span></p>
+            <p>Zip: <span id="deliveryZip"></span></p>
+        </div>
+        <div class="delivery-date">
+            <h3>Delivery Date</h3>
+            <p>Year: <span id="year"></span></p>
+            <p>Month: <span id="month"></span></p>
+            <p>Day: <span id="day"></span></p>
+        </div>
+        <div class="payment-details">
+            <h3>Payment Details</h3>
+            <p>Card: <span id="card"></span></p>
+            <p>Card Number: <span id="number"></span></p>
+            <p>Card Holder: <span id="holder"></span></p>
+        </div>
+
+        <button id="confirm" type="submit" onclick="showConfirmation()">
+            Confirm Order
+        </button>
+    </div>
+
+    <div class="successful-payment" id="successful-payment">
+        <svg class="checkmark" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 52 52">
+            <circle class="checkmark__circle" cx="26" cy="26" r="25" fill="none" />
+            <path class="checkmark__check" fill="none" d="M14.1 27.2l7.1 7.2 16.7-16.8" /></svg>
+        <p class="success">
+            Payment is confirmed
+        </p>
+    </div>
+
+    <script src="result.js"></script>
+</body>
+
+</html>

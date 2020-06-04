@@ -189,4 +189,356 @@ $(function () {
     }
   });
 
+
+
+
 });
+
+
+
+// VALIDATE ORDER FORM IN JS
+
+// all inputs from form
+const INPUTS = {
+  card: document.getElementById("visa").checked ? document.getElementById("visa") : document.getElementById("mastercard"),
+  bike: document.getElementById("choose-bike"),
+  name: document.getElementById("billing-name"),
+  surname: document.getElementById("billing-surname"),
+  street: document.getElementById("autocomplete"),
+  state: document.getElementById("administrative_area_level_1"),
+  zip: document.getElementById("postal_code"),
+  phone: document.getElementById("billing-phone"),
+  deliveryName: document.getElementById("delivery-name"),
+  deliverySurname: document.getElementById("delivery-surname"),
+  deliveryStreet: document.getElementById("delivery-street"),
+  deliveryState: document.getElementById("delivery-state"),
+  deliveryZip: document.getElementById("delivery-zip"),
+  year: document.getElementById("year"),
+  month: document.getElementById("month"),
+  day: document.getElementById("day"),
+  number: document.getElementById("cardnumber"),
+  holder: document.getElementById("cardholder"),
+  cardMonth: document.getElementById("card-month"),
+  cardYear: document.getElementById("card-year"),
+  cvc: document.getElementById("cvc"),
+};
+
+
+// create account field
+const createAccountInputs = {
+  username: document.getElementById("create-username"),
+  password: document.getElementById("create-password"),
+  passwordConfirm: document.getElementById("create-confirm-password"),
+}
+
+// checkbox for copy billing information
+const copyBill = document.getElementById("copy-billing-address");
+
+const orderForm = document.getElementById("order");
+const buttons = document.getElementsByClassName('carousel__buy');
+
+// get months as string for adding to result.html
+const monthName = ["January", "February", "March", "April", "May", "June",
+  "July", "August", "September", "October", "November", "December"
+];
+
+
+// remove form from DOM until Buy Now button will be pressed
+document.body.removeChild(orderForm);
+
+
+// event listeners to all buttons from slider
+for (let i = 0; i < buttons.length; i++) {
+  (function (index) {
+    buttons[index].addEventListener("click", () => {
+      //add animation to order form
+      setTimeout(() => orderForm.classList.add("opacity"), 600);
+      // hide everything else except order form and background
+      hideRestElements();
+      // add form to DOM
+      document.body.appendChild(orderForm);
+
+      // Google Places API enable
+      initAutocomplete();
+
+      // contains functions for order validation
+      initOrderFunctions();
+      window.scrollTo(0, 0);
+    })
+  })(i);
+}
+
+
+// hide everything else except order form and background
+function hideRestElements() {
+  const all = document.getElementsByTagName("body");
+  for (let i = 4; i < all[0].children.length; i++) {
+    all[0].children[i].classList.add("is-hidden");
+  }
+}
+
+
+// contains functions for order validation
+function initOrderFunctions() {
+
+  // ONLY NUMBERS INPUT FILTER
+  function onlyNumberInput(textbox, inputFilter) {
+    ["input", "keydown", "keyup", "mousedown", "mouseup", "select", "contextmenu", "drop"].forEach(function (event) {
+      textbox.addEventListener(event, function () {
+        if (inputFilter(this.value)) {
+          this.oldValue = this.value;
+          this.oldSelectionStart = this.selectionStart;
+          this.oldSelectionEnd = this.selectionEnd;
+        } else if (this.hasOwnProperty("oldValue")) {
+          this.value = this.oldValue;
+          this.setSelectionRange(this.oldSelectionStart, this.oldSelectionEnd);
+        } else {
+          this.value = "";
+        }
+      });
+    });
+  }
+  onlyNumberInput(INPUTS.zip, function (value) {
+    return /^-?\d*$/.test(value);
+  });
+  onlyNumberInput(INPUTS.phone, function (value) {
+    return /^-?\d*$/.test(value);
+  });
+  onlyNumberInput(INPUTS.cvc, function (value) {
+    return /^-?\d*$/.test(value);
+  })
+  onlyNumberInput(INPUTS.deliveryZip, function (value) {
+    return /^-?\d*$/.test(value);
+  })
+
+
+
+
+  // copy billing information to delivery information
+  copyBill.addEventListener('click', () => {
+    if (copyBill.checked) {
+      INPUTS.deliveryName.value = INPUTS.name.value;
+      INPUTS.deliverySurname.value = INPUTS.surname.value;
+      INPUTS.deliveryState.value = INPUTS.state.value;
+      INPUTS.deliveryStreet.value = INPUTS.street.value;
+      INPUTS.deliveryZip.value = INPUTS.zip.value;
+    } else {
+      INPUTS.deliveryName.value = "";
+      INPUTS.deliverySurname.value = "";
+      INPUTS.deliveryState.value = "";
+      INPUTS.deliveryStreet.value = "";
+      INPUTS.deliveryZip.value = ""
+    }
+  })
+
+
+
+  // implement drop down date selections
+  const yearsCount = 5;
+
+  let selectYear = document.getElementById("year");
+  let selectMonth = document.getElementById("month");
+  let selectDay = document.getElementById("day");
+
+  let currentYear = new Date().getFullYear();
+  let currentMonth = new Date().getMonth();
+
+  for (let y = 0; y < yearsCount; y++) {
+    let yearElem = document.createElement("option");
+    yearElem.value = currentYear;
+    yearElem.textContent = currentYear;
+    selectYear.appendChild(yearElem);
+    currentYear++
+  }
+
+
+  let d = new Date();
+  let year = d.getFullYear();
+  let month = d.getMonth();
+  let day = d.getDay();
+
+  selectYear.addEventListener("change", () => {
+    AdjustDays();
+    AdjustMonths();
+  });
+  selectMonth.value = month;
+  selectMonth.addEventListener("change", AdjustDays);
+
+  AdjustMonths();
+  AdjustDays();
+
+  selectDay.value = day;
+
+
+  function AdjustMonths() {
+    // YOU CANNOT CHOOSE DATE EARLIER THAN TODAY
+    if (+selectYear.value !== new Date().getFullYear()) {
+      currentMonth = 0;
+    } else {
+      currentMonth = new Date().getMonth();
+    }
+    selectMonth.innerHTML = "";
+
+    for (; currentMonth < 12; currentMonth++) {
+      let month = monthName[currentMonth];
+      let monthElem = document.createElement("option");
+      monthElem.value = currentMonth;
+      monthElem.textContent = month;
+      selectMonth.append(monthElem);
+    }
+  }
+
+  function AdjustDays() {
+    let date = new Date();
+    let d;
+    let year = selectYear.value;
+    let month = +selectMonth.value;
+    selectDay.innerHTML = "";
+
+
+    let days = new Date(year, month + 1, 0).getDate();
+
+    // YOU CANNOT CHOOSE DATE EARLIER THAN TODAY
+    if (+year == date.getFullYear() && month == date.getMonth()) {
+      d = new Date().getDay();
+    } else {
+      d = 1;
+    }
+
+    for (; d <= days; d++) {
+      let dayElem = document.createElement("option");
+      dayElem.value = d;
+      dayElem.textContent = d;
+      selectDay.append(dayElem);
+    }
+  }
+}
+
+
+// Do alert if some of inputs contains a lot of spaces
+function checkEmptyInputs() {
+  let values = Object.values(INPUTS);
+  let keys = Object.keys(INPUTS);
+
+
+  for (let i = 0; i < values.length; i++) {
+    let trimmedValue = values[i].value.trim();
+
+    if (trimmedValue == "") {
+      alert(`${keys[i]} field is empty`.toUpperCase());
+      return;
+    }
+  }
+
+  createAccount();
+}
+
+// create account field isn't required but if some of inputs are filled like username or password - rest inputs of create account field should be required and passwords should be matched
+function createAccount() {
+  let values = Object.values(createAccountInputs);
+  let required = false;
+
+
+
+  for (let i = 0; i < values.length; i++) {
+    if (values[i].value !== "") {
+      for (let j = 0; j < values.length; j++) {
+        values[j].required = true;
+        values[j].setAttribute("minlength", "5");
+      }
+      required = true;
+      break;
+    }
+  }
+
+  if (required) {
+    if (createAccountInputs.password.value !== createAccountInputs.passwordConfirm.value || createAccountInputs.password.value == "" || createAccountInputs.passwordConfirm.value == "" || createAccountInputs.username === "") {
+      return;
+    }
+  }
+
+  addValuesToLocalStorage();
+}
+
+
+function addValuesToLocalStorage() {
+
+  localStorage.clear();
+
+
+  let keys = Object.keys(INPUTS);
+  let values = Object.values(INPUTS);
+
+  for (let i = 0; i < keys.length; i++) {
+    // months have values as a number, this if statement convert number to name of selected month
+    if (keys[i] == "month") {
+      localStorage.setItem(`${keys[i]}`, `${monthName[+values[i].value]}`)
+    } else {
+      localStorage.setItem(`${keys[i]}`, `${values[i].value}`);
+    }
+  }
+
+  window.document.location = 'result/result.html'
+}
+
+// Autocomplete address using Google Places API
+var placeSearch, autocomplete;
+
+var componentForm = {
+  administrative_area_level_1: 'short_name',
+  postal_code: 'short_name'
+};
+
+function initAutocomplete() {
+  // Create the autocomplete object, restricting the search predictions to
+  // geographical location types.
+  autocomplete = new google.maps.places.Autocomplete(
+    document.getElementById('autocomplete'), {
+      types: ['geocode']
+    });
+
+  // Avoid paying for data that you don't need by restricting the set of
+  // place fields that are returned to just the address components.
+  autocomplete.setFields(['address_component']);
+
+  // When the user selects an address from the drop-down, populate the
+  // address fields in the form.
+  autocomplete.addListener('place_changed', fillInAddress);
+}
+
+function fillInAddress() {
+  // Get the place details from the autocomplete object.
+  var place = autocomplete.getPlace();
+
+  for (var component in componentForm) {
+    document.getElementById(component).value = '';
+  }
+
+  // Get each component of the address from the place details,
+  // and then fill-in the corresponding field on the form.
+  for (var i = 0; i < place.address_components.length; i++) {
+    var addressType = place.address_components[i].types[0];
+    if (componentForm[addressType]) {
+      var val = place.address_components[i][componentForm[addressType]];
+      document.getElementById(addressType).value = val;
+    }
+  }
+}
+
+// Bias the autocomplete object to the user's geographical location,
+// as supplied by the browser's 'navigator.geolocation' object.
+function geolocate() {
+  if (navigator.geolocation) {
+    navigator.geolocation.getCurrentPosition(function (position) {
+      var geolocation = {
+        lat: position.coords.latitude,
+        lng: position.coords.longitude
+      };
+      var circle = new google.maps.Circle({
+        center: geolocation,
+        radius: position.coords.accuracy
+      });
+      autocomplete.setBounds(circle.getBounds());
+    });
+  }
+}

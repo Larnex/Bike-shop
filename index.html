@@ -5,62 +5,64 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Bike Shop</title>
-  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.6.3/css/font-awesome.min.css" />
-
   <link rel="stylesheet" href="main.css" />
 </head>
 
 <body>
+  <!-- ADD FB LOGIN  -->
   <script>
     function statusChangeCallback(response) {
-      sessionStorage.setItem("received token", response.authResponse.accessToken); // Store token to session storage
-      if (response.status === 'connected') {
+      sessionStorage.setItem(
+        "received token",
+        response.authResponse.accessToken
+      ); // Store token to session storage
+      if (response.status === "connected") {
         testAPI();
       }
     }
 
-
-    function checkLoginState() { // Called when a person is finished with the Login Button.
-      FB.getLoginStatus(function (response) { // See the onlogin handler
+    function checkLoginState() {
+      // Called when a person is finished with the Login Button.
+      FB.getLoginStatus(function (response) {
+        // See the onlogin handler
         statusChangeCallback(response);
       });
     }
 
-
     window.fbAsyncInit = function () {
       FB.init({
-        appId: '293487131815203',
+        appId: "293487131815203",
         cookie: true,
         xfbml: true,
-        version: 'v7.0'
+        version: "v7.0",
       });
-
 
       FB.getLoginStatus(function (response) {
         statusChangeCallback(response);
       });
     };
 
-
     (function (d, s, id) {
-      var js, fjs = d.getElementsByTagName(s)[0];
+      var js,
+        fjs = d.getElementsByTagName(s)[0];
       if (d.getElementById(id)) return;
       js = d.createElement(s);
       js.id = id;
       js.src = "https://connect.facebook.net/en_US/sdk.js";
       fjs.parentNode.insertBefore(js, fjs);
-    }(document, 'script', 'facebook-jssdk'));
-
+    })(document, "script", "facebook-jssdk");
 
     function testAPI() {
-      FB.api('/me', function (response) {
-        console.log('Successful login for: ' + response.name);
+      FB.api("/me", function (response) {
         console.log(response);
         document.getElementById("status").innerHTML =
-          'Thanks for logging in, ' + response.name + '!';
+          "Thanks for logging in, " + response.name + "!";
       });
     }
   </script>
+  <!-- END FB LOGIN  -->
+
+
   <div class="color-overlay"></div>
   <video muted autoplay loop class="header-bg__video" id="video">
     <source src="./images/Pexels Videos 1793482.mp4" type="video/mp4" />
@@ -127,11 +129,11 @@
       </button>
       <div class="carousel__track-container">
         <div class="carousel__track">
-          <div class="carousel__slide current-slide">
+          <div class="carousel__slide current-slide" id="raleigh">
             <img src="./images/bikes/bike-1.png" alt="" />
             <div class="carousel__content">
               <h1 class="carousel__title">
-                Lorem ipsum dolor sit.
+                Raleigh Roxio 1.0
               </h1>
               <p class="carousel__text">
                 Lorem ipsum dolor sit amet consectetur adipisicing elit.
@@ -139,14 +141,17 @@
                 labore quia maxime reprehenderit. Pariatur voluptate neque
                 suscipit consectetur repudiandae nulla?
               </p>
+              <p class="price">
+                $1000
+              </p>
               <button class="carousel__buy bubbly-button">BUY NOW</button>
             </div>
           </div>
-          <div class="carousel__slide">
+          <div class="carousel__slide" id="nishiki">
             <img src="./images/bikes/bike-2.png" alt="" />
             <div class="carousel__content">
               <h1 class="carousel__title">
-                Lorem ipsum dolor sit.
+                Nishiki Criterium
               </h1>
               <p class="carousel__text">
                 Lorem ipsum dolor sit amet consectetur adipisicing elit.
@@ -154,29 +159,35 @@
                 nostrum delectus. Labore pariatur temporibus minus, doloremque
                 laborum nesciunt?
               </p>
+              <p class="price">
+                $500
+              </p>
               <button class="carousel__buy bubbly-button">BUY NOW</button>
             </div>
           </div>
-          <div class="carousel__slide">
+          <div class="carousel__slide" id="checkpoint">
             <img src="./images/bikes/bike-3.png" alt="" />
             <div class="carousel__content">
               <h1 class="carousel__title">
-                Lorem ipsum dolor sit.
+                Trek Checkpoint
               </h1>
               <p class="carousel__text">
                 Lorem ipsum dolor sit amet consectetur adipisicing elit.
                 Repudiandae eligendi natus, minus saepe eius autem voluptates
                 nostrum delectus. Labore pariatur temporibus minus, doloremque
                 laborum nesciunt?
+              </p>
+              <p class="price">
+                $600
               </p>
               <button class="carousel__buy bubbly-button">BUY NOW</button>
             </div>
           </div>
-          <div class="carousel__slide">
+          <div class="carousel__slide" id="emonda">
             <img src="./images/bikes/bike-4.png" alt="" />
             <div class="carousel__content">
               <h1 class="carousel__title">
-                Lorem ipsum dolor sit.
+                Trek Émonda
               </h1>
               <p class="carousel__text">
                 Lorem ipsum dolor sit amet consectetur adipisicing elit.
@@ -184,6 +195,42 @@
                 nostrum delectus. Labore pariatur temporibus minus, doloremque
                 laborum nesciunt?
               </p>
+              <p class="price">
+                $700
+              </p>
+              <button class="carousel__buy bubbly-button">BUY NOW</button>
+            </div>
+          </div>
+          <div class="carousel__slide" id="ridgeback">
+            <img src="./images/bikes/bike-5.png" alt="" />
+            <div class="carousel__content">
+              <h1 class="carousel__title">
+                ridgeback
+              </h1>
+              <p class="carousel__text">
+                Lorem ipsum dolor sit amet consectetur adipisicing elit.
+                Repudiandae eligendi natus, minus saepe eius autem voluptates
+                nostrum delectus. Labore pariatur temporibus minus, doloremque
+                laborum nesciunt?
+              </p>
+              <p class="price">$300</p>
+              <button class="carousel__buy bubbly-button">BUY NOW</button>
+            </div>
+          </div>
+          <div class="carousel__slide" id="cannondale">
+            <img src="./images/bikes/bike-6.png" alt="" />
+            <div class="carousel__content">
+              <h1 class="carousel__title">
+                cannondale
+              </h1>
+              <p class="carousel__text">
+                Lorem ipsum dolor sit amet consectetur adipisicing elit.
+                Repudiandae eligendi natus, minus saepe eius autem voluptates
+                nostrum delectus. Labore pariatur temporibus minus, doloremque
+                laborum nesciunt?
+              </p>
+              <p class="price">$3000</p>
+
               <button class="carousel__buy bubbly-button">BUY NOW</button>
             </div>
           </div>
@@ -197,10 +244,186 @@
         <button class="carousel__indicator"></button>
         <button class="carousel__indicator"></button>
         <button class="carousel__indicator"></button>
+        <button class="carousel__indicator"></button>
+        <button class="carousel__indicator"></button>
       </div>
     </div>
+
+
+
   </div>
   <!-- END OF SLIDER PAGE -->
+
+  <!-- ORDER FORM -->
+  <div class="contact-container order-container" id="order">
+    <div class="login-box">
+      <h2>Order form</h2>
+      <form id="order-form" onsubmit="checkEmptyInputs();return false">
+        <div class="choose-bike-container">
+          <h3>Choose a bike:</h3>
+          <div class="user-box">
+            <label for="choose-bike">Bike model</label>
+            <select name="choose-bike" id="choose-bike">
+              <option>Raleigh Roxio 1.0 - $1000</option>
+              <option>Nishiki Criterium - $500</option>
+              <option>Trek Checkpoint - $600</option>
+              <option>Trek Emonda - $700</option>
+              <option>ridgeback - $300</option>
+              <option>cannondale - $3000</option>
+            </select>
+          </div>
+        </div>
+
+        <div class="billing-container">
+          <h3>Billing Address:</h3>
+          <div class="user-box">
+            <label for="billing-name">Name</label>
+            <input type="text" id="billing-name" name="billing-name" required autocomplete="off" minlength="3" />
+          </div>
+          <div class="user-box">
+            <label for="billing-surname">Surname</label>
+            <input type="text" id="billing-surname" name="billing-surname" required autocomplete="off" minlength="3" />
+          </div>
+          <div class="user-box">
+            <label for="billing_street">Street Address</label>
+            <input id="autocomplete" name="billing_street" onFocus="geolocate()" type="text" required />
+          </div>
+          <div class="user-box half">
+            <label for="billing_state">State/Region</label>
+            <input id="administrative_area_level_1" name="billing_state" type="text" required minlength="3" />
+          </div>
+          <div class="user-box half">
+            <label for="billing_zip">Zip</label>
+            <input id="postal_code" name="billing_zip" type="text" required minlength="3" maxlength="10" />
+          </div>
+          <div class="user-box">
+            <label for="billing-phone">Phone</label>
+            <input id="billing-phone" name="billing-phone" type="tel" required minlength="3" maxlength="15" />
+          </div>
+
+        </div>
+        <div class="delivery-container">
+          <h3>Delivery Address:</h3>
+          <div class="checkbox-billing">
+            <label for="copy-billing-address" class="copy-billing-address">Same as billing address</label>
+            <input type="checkbox" name="copy-billing-address" id="copy-billing-address" minlength="3">
+          </div>
+          <div class="user-box">
+            <label for="delivery-name">Name</label>
+            <input type="text" id="delivery-name" name="delivery-name" required autocomplete="off" minlength="3" />
+          </div>
+          <div class="user-box">
+            <label for="delivery-surname">Surname</label>
+            <input type="text" id="delivery-surname" name="delivery-surname" required autocomplete="off" />
+          </div>
+          <div class="user-box">
+            <label for="delivery-street">Street Address</label>
+            <input id="delivery-street" name="delivery-street" placeholder="Enter your address" type="text" required
+              minlength="3" />
+          </div>
+          <div class="user-box half">
+            <label for="delivery-state">State/Region</label>
+            <input id="delivery-state" name="delivery-state" type="text" required minlength="3" />
+          </div>
+          <div class="user-box half">
+            <label for="delivery-zip">Zip</label>
+            <input id="delivery-zip" name="delivery-zip" type="text" required minlength="3" />
+          </div>
+        </div>
+        <div class="delivery-date">
+          <h3>Delivery Date:</h3>
+          <div class="user-box">
+            <select id="year"></select>
+            <select id="month"></select>
+            <select id="day"></select>
+          </div>
+        </div>
+        <div id="payment">
+          <h3>Payment details</h3>
+          <div id="checkout" class="user-box">
+
+            <label class="card-label">
+              <input class="card" id="visa" type="radio" name="card" value="visa">
+              <img src="http://enwaara.se/codepen/visa.png">
+            </label>
+            <label class="card-label">
+              <input class="card" id="mastercard" type="radio" name="card" value="mastercard">
+              <img src="http://enwaara.se/codepen/mastercard.png" alt="">
+            </label>
+
+            <div class="card-number container">
+              <label>Credit Card Number</label>
+              <input id="cardnumber" type=text pattern="[0-9]{13,16}" minlength="13" maxlength="18" name="cardnumber"
+                required placeholder="0123-4567-8901-2345">
+            </div>
+
+            <div class="card-holder container">
+              <label>Card Holder</label>
+              <input id="cardholder" type="text" name="name" required maxlength="50" placeholder="Cardholder">
+            </div>
+
+            <div class="expiration-date">
+              <label>Expiration Date</label>
+              <div id="left">
+                <select required name="month" id="card-month" onchange="" size="1">
+                  <option>01</option>
+                  <option>02</option>
+                  <option>03</option>
+                  <option>04</option>
+                  <option>05</option>
+                  <option>06</option>
+                  <option>07</option>
+                  <option>08</option>
+                  <option>09</option>
+                  <option>10</option>
+                  <option>11</option>
+                  <option>12</option>
+                </select>
+                <p>/</p>
+                <select required name="year" id="card-year" onchange="" size="1">
+                  <option>20</option>
+                  <option>21</option>
+                  <option>22</option>
+                  <option>23</option>
+                  <option>24</option>
+                  <option>25</option>
+                  <option>26</option>
+                </select>
+              </div>
+            </div>
+            <div class="cvc">
+              <label id="cvc-label">CVC/CVV</label>
+              <input required id="cvc" type="text" placeholder="Cvc/Cvv" maxlength="3" />
+            </div>
+          </div>
+        </div>
+        <div class="create-account">
+          <h3>Create Account?</h3>
+          <div class="user-box">
+            <label for="create-username">Username</label>
+            <input type="text" id="create-username" name="create-username" autocomplete="off" />
+          </div>
+          <div class="user-box half">
+            <label for="create-password">Password</label>
+            <input type="password" id="create-password" name="create-password" autocomplete="off" />
+          </div>
+          <div class="user-box half">
+            <label for="create-confirm-password">Confirm password</label>
+            <input id="create-confirm-password" name="create-confirm-password" type="password" />
+          </div>
+        </div>
+        <input class="submit" value="PURCHASE" type="submit" href="#" id="submit-order">
+        <span></span>
+        <span></span>
+        <span></span>
+        <span></span>
+        PURCHASE
+        </input>
+    </div>
+    </form>
+  </div>
+
+
 
   <!-- CONTACT PAGE -->
   <div class="contact-container" id="contact">
@@ -208,33 +431,32 @@
       <h2>Registration</h2>
       <form id="registration-form">
         <div class="user-box">
-          <input type="text" id="user-name" name="user-name" required="required" autocomplete="off" />
           <label for="user-name">Name</label>
+          <input type="text" id="user-name" name="user-name" required autocomplete="off" />
         </div>
         <div class="user-box">
-          <input type="email" id="user-email" name="user-email" required="required" autocomplete="off" />
           <label for="user-email">Email</label>
+          <input type="email" id="user-email" name="user-email" required autocomplete="off" />
         </div>
         <div class="user-box">
-          <input type="password" id="user-password" autocomplete="off" name="user-password" required="required" id="" />
           <label for="user-password">Password</label>
+          <input type="password" id="user-password" autocomplete="off" name="user-password" required />
         </div>
         <div class="user-box">
-          <input type="password" name="user-password-confirm" autocomplete="off" required="required"
-            id="user-password-confirm" />
           <label for="user-password-confirm">Password confirm</label>
+          <input type="password" name="user-password-confirm" autocomplete="off" required id="user-password-confirm" />
         </div>
 
         <p id="status"></p>
 
-        <a href="#" id="submit">
-          <span></span>
-          <span></span>
-          <span></span>
-          <span></span>
-          SEND
-        </a>
-        <div class="fb-login-button" style="float:right; margin-top: 4rem;" scope="public_profile,email"
+        <input type="submit" class="submit" value="submit" href="#" id="submit">
+        <span></span>
+        <span></span>
+        <span></span>
+        <span></span>
+        SEND
+        </input>
+        <div class="fb-login-button" style="float: right; margin-top: 4rem;" scope="public_profile,email"
           onlogin="checkLoginState();" data-size="medium" data-button-type="continue_with" data-layout="default"
           data-auto-logout-link="false" data-use-continue-as="false" data-width=""></div>
       </form>
@@ -275,11 +497,14 @@
     </div>
   </footer>
 
+
   <script src="https://code.jquery.com/jquery-3.5.1.js" integrity="sha256-QWo7LDvxbWT2tbbQ97B53yJnYU3WhH/C8ycbRAkjPDc="
     crossorigin="anonymous"></script>
-  <!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.19.2/jquery.validate.min.js"></script> -->
   <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
   <script src="app.js"></script>
+  <script
+    src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDD9woHUDfiRIDQFZdRnY-nckUjlsUvjyQ&libraries=places&callback=initAutocomplete"
+    async defer></script>
   <script src="https://unpkg.com/ionicons@5.0.0/dist/ionicons.js"></script>
 </body>
 

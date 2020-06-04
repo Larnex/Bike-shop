@@ -22,6 +22,7 @@ body {
   height: 100%;
   overflow-y: scroll;
   font-family: "Regular";
+  margin: 0 auto;
 }
 
 /* Background video */
@@ -141,7 +142,6 @@ video {
 
         #datepicker {
           width: 100%;
-
         }
       }
 
@@ -252,6 +252,7 @@ video {
 // STYLE SLIDER PAGE
 
 .carousel-container {
+  position: relative;
   height: 100vh;
   width: 60%;
   margin: 0 auto;
@@ -311,22 +312,29 @@ video {
       display: flex;
       flex-direction: column;
       align-items: center;
-      justify-content: center;
+      justify-content: start;
       margin-left: 1rem;
 
       .carousel__title {
-        position: absolute;
-        top: 0;
         font-family: "Title";
-        font-size: 4rem;
-        color: #fff;
+        font-size: 3.5rem;
+        color: #2a4494;
       }
 
       .carousel__text {
         font-family: "Regular";
         font-size: 1.5rem;
-        color: #fff;
-        margin-top: 2rem;
+        color: #122c34;
+        margin-top: 5rem;
+      }
+
+      .price {
+        font-size: 5rem;
+        margin-top: 4rem;
+        letter-spacing: 0.2rem;
+        font-family: "Menu";
+        margin-top: 5rem;
+        color: #ff9fb2;
       }
 
       // STYLE THE BUTTON
@@ -347,7 +355,6 @@ video {
         transition: transform ease-in 0.1s, box-shadow ease-in 0.25s;
 
         &:focus {
-
           outline: 0;
         }
 
@@ -505,11 +512,48 @@ video {
   }
 }
 
-.is-hidden {
-  display: none;
-}
+
 
 /* END OF SLIDER*/
+
+
+
+// Order form
+// .order-container {
+//   position: absolute;
+//   opacity: 1;
+//   top: 0;
+//   left: 0;
+//   height: 80%;
+//   width: 70%;
+//   margin: 0 auto;
+//   display: flex;
+//   justify-content: start;
+//   align-items: center;
+//   transition: all 2s ease-in-out;
+
+
+//   .order-box {
+//     z-index: 99;
+//     height: 100%;
+//     width: 100%;
+//     padding: 4rem;
+//     background: rgba(0, 0, 0, 0.75);
+//     box-shadow: 0 15px 25px rgba(0, 0, 0, 0.6);
+//     border-radius: 10px;
+
+//     h2 {
+//       font-size: 2rem;
+//       margin: 0 0 3rem;
+//       padding: 0;
+//       color: #fff;
+//       text-align: center;
+//     }
+//   }
+// }
+
+
+
 
 /* CONTACT FORM */
 
@@ -525,7 +569,7 @@ video {
     z-index: 5;
     width: 100%;
     padding: 4rem;
-    background: rgba(0, 0, 0, 0.75);
+    background: rgba(0, 0, 0, 1);
     box-shadow: 0 15px 25px rgba(0, 0, 0, 0.6);
     border-radius: 10px;
 
@@ -537,10 +581,17 @@ video {
       text-align: center;
     }
 
+    h3 {
+      font-size: 1.8rem;
+      color: #e59500;
+      margin-bottom: 1rem;
+    }
+
     .user-box {
       position: relative;
 
-      input {
+      input:not(#visa):not(#mastercard),
+      select {
         width: 100%;
         padding: 1rem 0;
         font-size: 1.6rem;
@@ -552,20 +603,16 @@ video {
         background: transparent;
       }
 
-      label {
-        position: absolute;
-        top: -2rem;
-        left: 0;
+      label:not(.card-label) {
         padding: 1rem 0;
         font-size: 1.4rem;
         color: #03e9f4;
         pointer-events: none;
       }
-
     }
 
     form {
-      a {
+      input.submit {
         position: relative;
         display: inline-block;
         padding: 1rem 2rem;
@@ -577,6 +624,9 @@ video {
         transition: 0.5s;
         margin-top: 4rem;
         letter-spacing: 0.4rem;
+        appearance: none;
+        background: none;
+        border: none;
 
         &:hover {
           background: #03e9f4;
@@ -631,13 +681,19 @@ video {
         }
       }
 
+      .half {
+        display: inline-block;
+        width: 49.8%;
+        margin: 0;
+        padding: 0;
+      }
+
       #status {
         font-size: 2rem;
         color: white;
-        font-family: 'Bold';
+        font-family: "Bold";
       }
     }
-
   }
 }
 
@@ -686,6 +742,130 @@ video {
 }
 
 /* END OF CONTACT FORM */
+
+// Order form
+.order-container {
+  opacity: 0;
+  width: 70%;
+  height: 100%;
+  z-index: 9999;
+  margin: 0 auto;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  transition: all 2s ease-in-out;
+
+  .delivery-container {
+    h3 {
+      display: inline-block;
+      width: 50%;
+    }
+
+    .checkbox-billing {
+      display: inline-block;
+      width: 45%;
+      text-align: end;
+    }
+
+    label {
+      color: #fff;
+      font-size: 1.5rem;
+    }
+  }
+
+  #year,
+  #month,
+  #day {
+    width: 33%;
+  }
+
+  // payment details
+  #checkout {
+    width: 100%;
+    display: grid;
+    grid-template-rows: repeat(4, 1fr);
+    grid-template-columns: repeat(2, 1fr);
+    justify-content: center;
+    align-items: center;
+
+
+    .container {
+      grid-column: 1/3;
+    }
+
+
+    .card-label {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+
+    [type=radio] {
+      position: absolute;
+      opacity: 0;
+      width: 0;
+      height: 0;
+    }
+
+
+    [type=radio]+img {
+      cursor: pointer;
+      border: none;
+      filter: grayscale(100%);
+    }
+
+    [type=radio]:checked+img {
+      filter: none;
+    }
+
+    // #visa {
+    //   background-repeat: no-repeat;
+    //   background-position: center center;
+    //   background-size: 70%;
+    // }
+
+    // #mastercard {
+    //   background-repeat: no-repeat;
+    //   background-position: center center;
+    //   background-size: 80%;
+    // }
+
+    ::-webkit-input-placeholder {
+      letter-spacing: 3px;
+      text-transform: uppercase;
+      font-size: 0.9em;
+      color: white;
+    }
+
+    #cardnumber {
+      letter-spacing: 3px;
+
+      &::-webkit-input-placeholder {
+        font-size: 1em;
+      }
+    }
+
+    .expiration-date,
+    .cvc {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+
+      #left,
+      #cvc {
+        width: 35%;
+        display: flex;
+        justify-content: center;
+      }
+    }
+  }
+}
+
+.opacity {
+  opacity: 1;
+}
+
 
 /* Style about us page*/
 
@@ -799,5 +979,12 @@ video {
   z-index: 8 !important;
 }
 
+.pac-container {
+  z-index: 9999;
+}
+
+.is-hidden {
+  display: none !important;
+}
 
 @import "mobile";
