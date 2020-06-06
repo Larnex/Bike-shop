@@ -71,6 +71,34 @@ $(function () {
 
   const slideWidth = slides[0].getBoundingClientRect().width;
 
+  // modal window
+  const modal = $(".modal");
+  const img = $(".image");
+  const modalImg = $(".modal-content");
+  const closeBtn = $(".close");
+  const captionText = $("#caption");
+
+  // when I click right, move slides to the right
+  nextButton.click(nextSlide);
+  // when I click left, move slides to the left
+  prevButton.click(prevSlide);
+
+  img.each(function (index) {
+    $(this).on("click", function () {
+      $(modal).css("display", "flex");
+      $(modalImg).attr("src", $(this).attr("src"));
+      console.log($(this).attr("alt"));
+      captionText.text(`${$(this).attr("alt")}`);
+    });
+  });
+
+  closeBtn.on("click", function () {
+    $(modal).css("display", "none");
+  });
+
+  // auto change slide
+  setInterval(nextSlide, 3000);
+
   $.each(slides, (index, slide) => {
     $(slide).css("left", `${slideWidth * index}px`);
   });
@@ -87,8 +115,7 @@ $(function () {
     $(currentDot).removeClass("current-slide");
   }
 
-  // when I click left, move slides to the left
-  prevButton.click((e) => {
+  function prevSlide() {
     const currentSlide = track.find(".current-slide");
     let prevSlide = currentSlide.prev();
     let currentDot = dotsNav.find(".current-slide");
@@ -102,10 +129,9 @@ $(function () {
 
     moveToSlide(track, currentSlide, prevSlide);
     updateDots(currentDot, prevDot);
-  });
+  }
 
-  // when I click right, move slides to the right
-  nextButton.click((e) => {
+  function nextSlide() {
     const currentSlide = track.find(".current-slide");
     let nextSlide = currentSlide.next();
     const currentDot = dotsNav.find(".current-slide");
@@ -119,7 +145,7 @@ $(function () {
 
     moveToSlide(track, currentSlide, nextSlide);
     updateDots(currentDot, nextDot);
-  });
+  }
 
   // when I click the nav indicators, move to that slide
   dotsNav.click((e) => {
@@ -188,19 +214,15 @@ $(function () {
       }
     }
   });
-
-
-
-
 });
-
-
 
 // VALIDATE ORDER FORM IN JS
 
 // all inputs from form
 const INPUTS = {
-  card: document.getElementById("visa").checked ? document.getElementById("visa") : document.getElementById("mastercard"),
+  card: document.getElementById("visa").checked
+    ? document.getElementById("visa")
+    : document.getElementById("mastercard"),
   bike: document.getElementById("choose-bike"),
   name: document.getElementById("billing-name"),
   surname: document.getElementById("billing-surname"),
@@ -223,29 +245,37 @@ const INPUTS = {
   cvc: document.getElementById("cvc"),
 };
 
-
 // create account field
 const createAccountInputs = {
   username: document.getElementById("create-username"),
   password: document.getElementById("create-password"),
   passwordConfirm: document.getElementById("create-confirm-password"),
-}
+};
 
 // checkbox for copy billing information
 const copyBill = document.getElementById("copy-billing-address");
 
 const orderForm = document.getElementById("order");
-const buttons = document.getElementsByClassName('carousel__buy');
+const buttons = document.getElementsByClassName("carousel__buy");
 
 // get months as string for adding to result.html
-const monthName = ["January", "February", "March", "April", "May", "June",
-  "July", "August", "September", "October", "November", "December"
+const monthName = [
+  "January",
+  "February",
+  "March",
+  "April",
+  "May",
+  "June",
+  "July",
+  "August",
+  "September",
+  "October",
+  "November",
+  "December",
 ];
-
 
 // remove form from DOM until Buy Now button will be pressed
 document.body.removeChild(orderForm);
-
 
 // event listeners to all buttons from slider
 for (let i = 0; i < buttons.length; i++) {
@@ -264,10 +294,9 @@ for (let i = 0; i < buttons.length; i++) {
       // contains functions for order validation
       initOrderFunctions();
       window.scrollTo(0, 0);
-    })
+    });
   })(i);
 }
-
 
 // hide everything else except order form and background
 function hideRestElements() {
@@ -277,13 +306,20 @@ function hideRestElements() {
   }
 }
 
-
 // contains functions for order validation
 function initOrderFunctions() {
-
   // ONLY NUMBERS INPUT FILTER
   function onlyNumberInput(textbox, inputFilter) {
-    ["input", "keydown", "keyup", "mousedown", "mouseup", "select", "contextmenu", "drop"].forEach(function (event) {
+    [
+      "input",
+      "keydown",
+      "keyup",
+      "mousedown",
+      "mouseup",
+      "select",
+      "contextmenu",
+      "drop",
+    ].forEach(function (event) {
       textbox.addEventListener(event, function () {
         if (inputFilter(this.value)) {
           this.oldValue = this.value;
@@ -306,16 +342,13 @@ function initOrderFunctions() {
   });
   onlyNumberInput(INPUTS.cvc, function (value) {
     return /^-?\d*$/.test(value);
-  })
+  });
   onlyNumberInput(INPUTS.deliveryZip, function (value) {
     return /^-?\d*$/.test(value);
-  })
-
-
-
+  });
 
   // copy billing information to delivery information
-  copyBill.addEventListener('click', () => {
+  copyBill.addEventListener("click", () => {
     if (copyBill.checked) {
       INPUTS.deliveryName.value = INPUTS.name.value;
       INPUTS.deliverySurname.value = INPUTS.surname.value;
@@ -327,11 +360,9 @@ function initOrderFunctions() {
       INPUTS.deliverySurname.value = "";
       INPUTS.deliveryState.value = "";
       INPUTS.deliveryStreet.value = "";
-      INPUTS.deliveryZip.value = ""
+      INPUTS.deliveryZip.value = "";
     }
-  })
-
-
+  });
 
   // implement drop down date selections
   const yearsCount = 5;
@@ -348,9 +379,8 @@ function initOrderFunctions() {
     yearElem.value = currentYear;
     yearElem.textContent = currentYear;
     selectYear.appendChild(yearElem);
-    currentYear++
+    currentYear++;
   }
-
 
   let d = new Date();
   let year = d.getFullYear();
@@ -368,7 +398,6 @@ function initOrderFunctions() {
   AdjustDays();
 
   selectDay.value = day;
-
 
   function AdjustMonths() {
     // YOU CANNOT CHOOSE DATE EARLIER THAN TODAY
@@ -395,7 +424,6 @@ function initOrderFunctions() {
     let month = +selectMonth.value;
     selectDay.innerHTML = "";
 
-
     let days = new Date(year, month + 1, 0).getDate();
 
     // YOU CANNOT CHOOSE DATE EARLIER THAN TODAY
@@ -414,12 +442,10 @@ function initOrderFunctions() {
   }
 }
 
-
 // Do alert if some of inputs contains a lot of spaces
 function checkEmptyInputs() {
   let values = Object.values(INPUTS);
   let keys = Object.keys(INPUTS);
-
 
   for (let i = 0; i < values.length; i++) {
     let trimmedValue = values[i].value.trim();
@@ -438,8 +464,6 @@ function createAccount() {
   let values = Object.values(createAccountInputs);
   let required = false;
 
-
-
   for (let i = 0; i < values.length; i++) {
     if (values[i].value !== "") {
       for (let j = 0; j < values.length; j++) {
@@ -452,7 +476,13 @@ function createAccount() {
   }
 
   if (required) {
-    if (createAccountInputs.password.value !== createAccountInputs.passwordConfirm.value || createAccountInputs.password.value == "" || createAccountInputs.passwordConfirm.value == "" || createAccountInputs.username === "") {
+    if (
+      createAccountInputs.password.value !==
+        createAccountInputs.passwordConfirm.value ||
+      createAccountInputs.password.value == "" ||
+      createAccountInputs.passwordConfirm.value == "" ||
+      createAccountInputs.username === ""
+    ) {
       return;
     }
   }
@@ -460,11 +490,8 @@ function createAccount() {
   addValuesToLocalStorage();
 }
 
-
 function addValuesToLocalStorage() {
-
   localStorage.clear();
-
 
   let keys = Object.keys(INPUTS);
   let values = Object.values(INPUTS);
@@ -472,38 +499,40 @@ function addValuesToLocalStorage() {
   for (let i = 0; i < keys.length; i++) {
     // months have values as a number, this if statement convert number to name of selected month
     if (keys[i] == "month") {
-      localStorage.setItem(`${keys[i]}`, `${monthName[+values[i].value]}`)
+      localStorage.setItem(`${keys[i]}`, `${monthName[+values[i].value]}`);
     } else {
       localStorage.setItem(`${keys[i]}`, `${values[i].value}`);
     }
   }
 
-  window.document.location = 'result/result.html'
+  window.document.location = "result/result.html";
 }
 
 // Autocomplete address using Google Places API
 var placeSearch, autocomplete;
 
 var componentForm = {
-  administrative_area_level_1: 'short_name',
-  postal_code: 'short_name'
+  administrative_area_level_1: "short_name",
+  postal_code: "short_name",
 };
 
 function initAutocomplete() {
   // Create the autocomplete object, restricting the search predictions to
   // geographical location types.
   autocomplete = new google.maps.places.Autocomplete(
-    document.getElementById('autocomplete'), {
-      types: ['geocode']
-    });
+    document.getElementById("autocomplete"),
+    {
+      types: ["geocode"],
+    }
+  );
 
   // Avoid paying for data that you don't need by restricting the set of
   // place fields that are returned to just the address components.
-  autocomplete.setFields(['address_component']);
+  autocomplete.setFields(["address_component"]);
 
   // When the user selects an address from the drop-down, populate the
   // address fields in the form.
-  autocomplete.addListener('place_changed', fillInAddress);
+  autocomplete.addListener("place_changed", fillInAddress);
 }
 
 function fillInAddress() {
@@ -511,7 +540,7 @@ function fillInAddress() {
   var place = autocomplete.getPlace();
 
   for (var component in componentForm) {
-    document.getElementById(component).value = '';
+    document.getElementById(component).value = "";
   }
 
   // Get each component of the address from the place details,
@@ -532,11 +561,11 @@ function geolocate() {
     navigator.geolocation.getCurrentPosition(function (position) {
       var geolocation = {
         lat: position.coords.latitude,
-        lng: position.coords.longitude
+        lng: position.coords.longitude,
       };
       var circle = new google.maps.Circle({
         center: geolocation,
-        radius: position.coords.accuracy
+        radius: position.coords.accuracy,
       });
       autocomplete.setBounds(circle.getBounds());
     });
